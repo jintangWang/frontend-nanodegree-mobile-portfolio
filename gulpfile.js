@@ -2,7 +2,7 @@ var gulp = require('gulp');
 
 var minifyCss = require('gulp-minify-css');
 
-gulp.task('build_index', ['clean'], function() {
+gulp.task('build_index', function() {
   var inline = require('gulp-inline')
     , uglify = require('gulp-uglify')
     , htmlmin = require('gulp-htmlmin');
@@ -23,7 +23,7 @@ gulp.task('build_index', ['clean'], function() {
 
 });
 
-gulp.task('copy_resources', ['clean'], function() {
+gulp.task('copy_resources', function() {
   gulp.src(['src/img/*', 'src/views/images/*'], {base: './src/'})
     .pipe(gulp.dest('dist'));
 
@@ -32,7 +32,7 @@ gulp.task('copy_resources', ['clean'], function() {
     .pipe(gulp.dest('dist/css'));
 });
 
-gulp.task('compress_images', ['clean'], function() {
+gulp.task('compress_images', function() {
   var responsive = require('gulp-responsive');
   var imagemin = require('gulp-imagemin');
 
@@ -70,6 +70,7 @@ gulp.task('clean', function () {
 });
 
 gulp.task('default', [
+    'clean',
     'build_index',
     'compress_images',
     'copy_resources'

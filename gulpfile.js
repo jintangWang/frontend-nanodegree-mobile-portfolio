@@ -21,23 +21,11 @@ gulp.task('build_index', ['clean'], function() {
     }))
     .pipe(gulp.dest('dist'));
 
-  // gulp.src('src/views/pizza.html')
-  //   .pipe(inline({
-  //     base: './',
-  //     js: uglify,
-  //     css: [minifyCss],
-  //     disabledTypes: ['svg', 'img']
-  //   }))
-  //   .pipe(htmlmin({
-  //     collapseWhitespace: true,
-  //     removeComments: true
-  //   }))
-  //   .pipe(gulp.dest('dist/views'));
 });
 
 gulp.task('copy_resources', ['clean'], function() {
-  gulp.src('src/views/images/*')
-    .pipe(gulp.dest('dist/views/images'));
+  gulp.src(['src/img/*', 'src/views/images/*'], {base: './src/'})
+    .pipe(gulp.dest('dist'));
 
   gulp.src('src/css/print.css')
     .pipe(minifyCss())
@@ -59,27 +47,27 @@ gulp.task('compress_images', ['clean'], function() {
     withMetadata: false,
   };
 
-  // gulp.src(['src/img/*', '!src/img/pizzeria.jpg'])
-  //   .pipe(responsive({
-  //     '*': {}
-  //   }, config))
-  //   .pipe(imagemin())
-  //   .pipe(gulp.dest('dist/img'));
-  //
-  // gulp.src('src/img/pizzeria.jpg')
-  //   .pipe(responsive({
-  //     '*': [{
-  //       height: 75,
-  //       width: 100,
-  //       rename: { suffix: '-small' }
-  //     }, {
-  //       height: 270,
-  //       width: 360,
-  //       rename: { suffix: '-medium' }
-  //     }],
-  //   }, config))
-  //   .pipe(imagemin())
-  //   .pipe(gulp.dest('dist/img'));
+  gulp.src(['src/img/*'])
+    .pipe(responsive({
+      '*': {}
+    }, config))
+    .pipe(imagemin())
+    .pipe(gulp.dest('dist/img'));
+
+  gulp.src('src/views/images/pizzeria.jpg')
+    .pipe(responsive({
+      '*': [{
+        height: 75,
+        width: 100,
+        rename: { suffix: '-small' }
+      }, {
+        height: 270,
+        width: 360,
+        rename: { suffix: '-medium' }
+      }],
+    }, config))
+    .pipe(imagemin())
+    .pipe(gulp.dest('dist/views/images'));
 });
 
 gulp.task('clean', function () {
@@ -90,7 +78,7 @@ gulp.task('clean', function () {
 
 gulp.task('default', [
     'build_index',
-    // 'compress_images',
+    'compress_images',
     'copy_resources'
 ]);
 

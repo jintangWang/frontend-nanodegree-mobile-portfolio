@@ -45,9 +45,10 @@ gulp.task('compress_images', ['clean'], function() {
     compressionLevel: 9,
     // Strip all metadata
     withMetadata: false,
+      format: 'jpg'
   };
 
-  gulp.src(['src/img/*'])
+  gulp.src(['src/img/*.jpg'])
     .pipe(responsive({
       '*': {}
     }, config))
@@ -56,15 +57,7 @@ gulp.task('compress_images', ['clean'], function() {
 
   gulp.src('src/views/images/pizzeria.jpg')
     .pipe(responsive({
-      '*': [{
-        height: 75,
-        width: 100,
-        rename: { suffix: '-small' }
-      }, {
-        height: 270,
-        width: 360,
-        rename: { suffix: '-medium' }
-      }],
+      '*': {},
     }, config))
     .pipe(imagemin())
     .pipe(gulp.dest('dist/views/images'));
@@ -81,5 +74,3 @@ gulp.task('default', [
     'compress_images',
     'copy_resources'
 ]);
-
-// gulp.watch('src/**', {}, 'default');

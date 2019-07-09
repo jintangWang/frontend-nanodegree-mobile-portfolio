@@ -45,7 +45,7 @@ gulp.task('compress_images', ['clean'], function() {
     compressionLevel: 9,
     // Strip all metadata
     withMetadata: false,
-      format: 'jpg'
+    format: 'jpg'
   };
 
   gulp.src(['src/img/*.jpg'])

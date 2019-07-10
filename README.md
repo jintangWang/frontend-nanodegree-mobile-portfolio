@@ -55,7 +55,7 @@
 > * <a href="http://getbootstrap.com/components/">Bootstrap's Components</a>
 
 
-**上面是原仓库的ReadMe，有两个题目，下面使我们的解答：**
+**上面是原仓库的ReadMe，有两个题目，下面是我们的解答：**
 
 #### Part 1: Optimize PageSpeed Insights score for index.html
 1. 使用 `gulp` 

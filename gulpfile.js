@@ -66,7 +66,7 @@ gulp.task('compress_images', function() {
 gulp.task('clean', function () {
   var del = require('del');
 
-  return del('dist/*');
+  return del(['dist/*', '!dist/sw.js']);
 });
 
 gulp.task('default', [

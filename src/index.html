@@ -68,5 +68,12 @@
         <p>&copy; Web Performance 2014 <span id="crp-stats"></span></p>
       </footer>
     </div>
+    <script>
+      if ('serviceWorker' in navigator) {
+         window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js');
+         });
+       }
+    </script>
   </body>
 </html>
